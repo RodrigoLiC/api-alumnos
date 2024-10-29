@@ -1,0 +1,18 @@
+org: rodrigoli
+service: api-alumnos
+
+provider:
+  name: aws
+  runtime: python3.12
+  iam:
+    role: arn:aws:iam::561610567424:role/LabRole
+
+functions:
+  listar:
+    handler: ListarAlumnos.lambda_handler
+    events:
+      - http:
+          path: /alumnos/listar
+          method: post
+          cors: true
+          integration: lambda
